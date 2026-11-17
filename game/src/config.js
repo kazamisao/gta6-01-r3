@@ -1,61 +1,43 @@
-// Every tuning number and colour in one place. The playfield is a fixed 1280x720 logical area;
-// the renderer scales it to the window, so no rule below depends on the screen size.
+// Solara Bay's fixed numbers: world size, the road grid, speeds, the palette.
+// Everything else reads its constants from here so the city, the physics and
+// the rendering agree with each other.
 
-export const FIELD = { width: 1280, height: 720, groundY: 664 };
-
-/** The simulation's fixed step, in seconds: 60 updates a second whatever the display's rate. */
-export const STEP = 1 / 60;
+export const WORLD = {
+  width: 3200,
+  height: 2400,
+  block: 400, // distance between neighbouring road centrelines
+  roadWidth: 76,
+  sidewalk: 16,
+};
 
 export const PLAYER = {
-  width: 72,
-  height: 24,
-  speed: 560,
-  invulnerable: 1.5,
+  radius: 11,
+  walkSpeed: 148,
+  sprintSpeed: 232,
+  maxHealth: 100,
 };
 
-export const LIVES = 3;
+export const SAVE_KEY = 'solara-bay-save-v1';
+export const CITY_SEED = 20261118;
+export const STEP = 1 / 60;
 
-export const BLOCK = {
-  minWidth: 40,
-  maxWidth: 110,
-  height: 36,
-  speed: 240,
-  speedPerLevel: 30,
-  speedJitter: 90,
-  interval: 0.55,
-  intervalScale: 0.88,
-  minInterval: 0.14,
-  dodgePoints: 1,
-};
-
-export const COIN = {
-  size: 24,
-  speed: 190,
-  speedPerLevel: 14,
-  interval: 1.4,
-  intervalJitter: 0.8,
-  points: 10,
-};
-
-/** Seconds of play per level, and the last level: speeds and spawn rates stop growing there. */
-export const LEVEL = { seconds: 12, max: 12 };
-
-/** How many falling things can exist at once; the pool is allocated once, at boot. */
-export const POOL_SIZE = 64;
-
+// Sun-soaked coastal palette: warm pavement, turquoise water, coral roofs.
 export const PALETTE = {
-  backdrop: '#11141b',
-  sky: '#1b1f2a',
-  ground: '#2a3040',
-  player: '#4fc3f7',
-  block: '#e5534b',
-  coin: '#f2c94c',
-  panel: '#252b38',
-  text: '#eef1f5',
-  muted: '#8b93a3',
+  sky: '#ffe9c4',
+  grass: '#7ec850',
+  park: '#69b844',
+  sand: '#f4dc9a',
+  water: '#1fb6c9',
+  waterDeep: '#1593ad',
+  road: '#4a4a52',
+  roadLine: '#f7e08a',
+  sidewalk: '#cfc4ae',
+  crosswalk: '#e8e4da',
+  roofA: '#e2725b',
+  roofB: '#f2a65a',
+  roofC: '#d95d7b',
+  roofD: '#8ecae6',
+  wall: '#fdf3e0',
+  palmTrunk: '#8a6642',
+  palmLeaf: '#3f9e4d',
 };
-
-export const FONT = 'system-ui, -apple-system, "Segoe UI", sans-serif';
-
-/** Where the best score is kept between visits (this browser only). */
-export const BEST_KEY = 'block-dodger.best';
